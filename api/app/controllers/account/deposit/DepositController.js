@@ -1,2 +1,2 @@
-// [POST] localhost:3000/v1/api/account/{id_account}/deposit
+// [POST] localhost:3000/api/v1/account/{id_account}/deposit
 // [Service] -> sempre antes de criar o deposito, verificar se o limite diario da conta foi atingido. Caso tenha sido, precisamos retornar um erro.

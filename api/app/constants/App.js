@@ -1,5 +1,5 @@
 /* Application Constants */
-const DB_HOST = process.env.DB_HOST || "mongodb://db:27017/dock";
+const DB_HOST = `postgres://${process.env.DB_HOST}/${process.env.POSTGRES_DB}` || "postgres://dockuser:passw0rd1234@localhost:5432/dock";
 
 /* Http Status Code Constants */
 const ERRORS = {
@@ -8,7 +8,6 @@ const ERRORS = {
     STATUS_CODE: 409
   }
 };
-
 
 module.exports = {
   DB_HOST,

@@ -1,24 +1,22 @@
 /* Importing Dependencies */
-const { connect } = require("mongoose");
+const sequelize = require("sequelize");
 
 /* Set env variable for our database */
 const { DB_HOST } = require("@constants/App");
 
-if (DB_HOST) {
-  connect(
-    DB_HOST,
-    { useNewUrlParser: true }
-  )
-    .then(() => {
-      console.info(
-        "Conection establish to database DOCK from service API"
-      );
-    })
-    .catch(err => {
-      console.error(JSON.stringify(err));
-    });
-} else {
-  console.error(
-    "Database location was not provided. Please, set DB_HOST variable."
-  );
-}
+/* Sequelize Config */
+const sequelizeInstance = new sequelize(
+  process.env.DB_DATABASE,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+      host: process.env.DB_HOST,
+      dialect: 'postgres',
+      define: {
+        freezeTableName: true
+      }
+  }
+);
+
+module.exports = sequelizeInstance;
+

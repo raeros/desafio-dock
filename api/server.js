@@ -1,7 +1,7 @@
 /* Alias registering */
 require("module-alias/register");
 
-/* Import Dependencies */
+/* Importing Dependencies */
 const express = require("express");
 const compression = require("compression");
 const cors = require("cors");
@@ -27,13 +27,13 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 
 /* Database configuration */
-require("./database");
+const sequelize = require("./database");
 
-/* Import Models */
+// /* Import Models */
 require("./app/models");
 
 /* Routes configuration */
-app.use(require("./app/routes"));
+//app.use(require("./app/routes"));
 
 /* Register middleware for Joi validation */
 app.use(errors());
@@ -42,8 +42,21 @@ app.use(errors());
 app.use(ErrorHandlingMiddleware.error);
 
 /* Bootstrap application */
-var server = app.listen(process.env.PORT || 3000, function() {
-  console.log("Listening on Port " + server.address().port);
-});
+(async () => {
+  try {
+    await sequelize.sync(
+      { force: false }
+    );
+
+    const PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, function() {
+      console.log(`Listening on Port ${PORT}`);
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
 module.exports = app;
