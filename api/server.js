@@ -29,7 +29,7 @@ app.use(json());
 /* Database configuration */
 const sequelize = require("./database");
 
-// /* Import Models */
+/* Import Models */
 require("./app/models");
 
 /* Routes configuration */
@@ -45,7 +45,9 @@ app.use(ErrorHandlingMiddleware.error);
 (async () => {
   try {
     await sequelize.sync(
-      { force: false }
+      { 
+        force: true 
+      }
     );
 
     const PORT = process.env.PORT || 3000;

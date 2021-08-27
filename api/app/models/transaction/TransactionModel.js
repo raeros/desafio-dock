@@ -2,34 +2,25 @@
 const Sequelize = require("sequelize");
 const db = require("../../../database");
 
-const PersonModel = db.define("Person", {
-    idPessoa: {
+const TransactionModel = db.define("Transaction", {
+    idTransacao: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nome: {
-        type: Sequelize.TEXT,
-        allowNull: false        
-    },
-    cpf: {
-        type: Sequelize.TEXT,
-        allowNull: false  
-    },
-    dataNascimento: {
-        type: Sequelize.DATE,
-        allowNull: false  
+    valor: {
+        type: Sequelize.DECIMAL(12, 2),
+        allowNull: false
     },
     created_at: {
-        field: 'dataCriacao',
+        field: 'dataTransacao',
         type: Sequelize.DATE
     },
     updated_at: {
         field: 'dataAtualizacao',
         type: Sequelize.DATE
     }
-}
-);
+});
 
-module.exports = PersonModel;
+module.exports = TransactionModel;

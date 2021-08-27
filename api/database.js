@@ -13,7 +13,8 @@ const sequelizeInstance = new sequelize(
       host: process.env.DB_HOST,
       dialect: 'postgres',
       define: {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
       }
   }
 );
