@@ -2,13 +2,14 @@
 const AccountTransactionService = require("@services/account/AccountTransactionService");
 
 class AccountTransactionController {
-    async getById(req, res, next) {
+
+    async getAllById(req, res, next){
         try {
             
-            const balance = await new AccountTransactionService().accountBalanceById(req.params.id);
+            const transactions = await new AccountTransactionService().getAllById(req.params.id);
 
             return res.status(200)
-                      .send(balance);
+                      .send(transactions);
 
         } catch (error) {
             next(error);

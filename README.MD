@@ -20,10 +20,24 @@ JSON Criação deposito
 
 --
 
-JSON Busca saldo de uma determinada conta
-[GET] http://localhost:3000/api/v1/account/1/balance
+Buscar saldo de uma determinada conta
+[GET] http://localhost:3000/api/v1/account/{id_account}/balance
 
 retorno
 {
     "saldo": "2581.52"
 }
+
+
+--
+
+JSON Criação Saque
+[POST] http://localhost:3000/api/v1/account/{id_account}/withdrawal
+{
+    "valor": "700"
+}
+
+--
+
+Bloquear conta
+[PATCH] http://localhost:3000/api/v1/account/{id_account}/block

@@ -7,12 +7,15 @@ const AccountController = require("@controllers/account/AccountController");
 const AccountDepositController = require("@controllers/account/deposit/DepositController");
 const AccounBalanceController = require("@controllers/account/balance/BalanceController");
 const AccounWithdrawalController = require("@controllers/account/withdrawal/WithdrawalController");
+const AccountTransactionController = require("@controllers/account/transaction/TransactionController")
 
 /* Importing Validations */
 const { AccountValidation } = require("@validationsv1/Account");
 const { AccountDepositValidation } = require("@validationsv1/AccountDeposit");
 const { AccountBalanceValidation } = require("@validationsv1/AccountBalance");
 const { AccountWithdrawalValidation } = require("@validationsv1/AccountWithdrawal");
+const { AccountTransactionValidation } = require("@validationsv1/AccountTransaction");
+
 
 router
   .route("/account")
@@ -33,5 +36,9 @@ router
 router
   .route("/account/:id/balance")
   .get(celebrate(AccountBalanceValidation), new AccounBalanceController().getById);
+
+router
+  .route("/account/:id/transaction")
+  .get(celebrate(AccountTransactionValidation), new AccountTransactionController().getAllById);
 
 module.exports = router;
