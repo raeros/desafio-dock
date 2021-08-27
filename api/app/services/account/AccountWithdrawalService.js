@@ -22,7 +22,7 @@ class AccountWithdrawalService {
         await account.save();
         await this.accountTransactionCreate(id, parseFloat(`-${withdrawal.valor}`));
 
-        return { message: "Withdrawal created sucefully!"};
+        return { message: "Withdrawal created successfully!"};
 
     }
 

@@ -28,6 +28,16 @@ class AccountService {
 
     }
 
+    async patchFlag(id){
+        const { account } = await this.getAccountById(id);
+        account.flagAtivo = false;
+
+        await account.save();
+
+        return { message: `Account id ${id} was blocked successfully!`};
+
+    }
+
     async accountPersonValidation(idPessoa){
 
         const person = await new PersonService().getById(idPessoa);

@@ -17,6 +17,19 @@ class AccountController {
             next(error);
         }
     }
+
+    async patchFlag(req, res, next) {
+        try {
+            
+            const accountFlag = await new AccountService().patchFlag(req.params.id);
+
+            return res.status(200)
+                      .send(accountFlag);
+
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = AccountController;

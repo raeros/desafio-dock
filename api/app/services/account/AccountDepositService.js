@@ -27,7 +27,7 @@ class AccountDepositService {
         await account.save();
         await this.accountTransactionCreate(id, deposit.valor);
 
-        return { message: "Deposit created sucefully!"};
+        return { message: "Deposit created successfully!"};
 
     }
 

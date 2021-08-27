@@ -25,6 +25,23 @@ class AccountTransactionService {
 
     }
 
+    async getAllById(idConta){
+        return await Transaction.findAll(
+            {
+                where: {
+                    [Op.and]: [
+                         {
+                            "idConta": {
+                                [Op.eq]: idConta
+                            }
+                        }
+                    ]
+                   
+                },
+                raw: true
+            });
+    }
+
     async getTodayWithdrawalTransaction(idConta){
         const todayStart = new Date().setHours(0, 0, 0, 0);
         const todayEnd = new Date().setHours(23, 59, 59, 0);
