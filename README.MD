@@ -5,7 +5,7 @@ JSON criação Account
     "idPessoa": 1,
     "limiteSaqueDiario": "1000.00",
     "saldo": "0",
-    "flagAtivo": false,
+    "flagAtivo": true,
     "tipoConta": 1    
 }
 
@@ -13,7 +13,17 @@ JSON criação Account
 
 JSON Criação deposito
 
-[POST]http://localhost:3000/api/v1/account/{id_account}/deposit
+[POST] http://localhost:3000/api/v1/account/{id_account}/deposit
 {
     "valor": "150.55"
+}
+
+--
+
+JSON Busca saldo de uma determinada conta
+[GET] http://localhost:3000/api/v1/account/1/balance
+
+retorno
+{
+    "saldo": "2581.52"
 }

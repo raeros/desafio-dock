@@ -1,2 +1,19 @@
-// [GET] localhost:3000/api/v1/account/{id_account}/balance
-// [GET] retorna o saldo de uma determinada conta
+/* Services */
+const AccountBalanceService = require("@services/account/AccountBalanceService");
+
+class AccountBalanceController {
+    async getById(req, res, next) {
+        try {
+            
+            const balance = await new AccountBalanceService().getAccountBalanceById(req.params.id);
+
+            return res.status(200)
+                      .send(balance);
+
+        } catch (error) {
+            next(error);
+        }
+    }
+}
+
+module.exports = AccountBalanceController;

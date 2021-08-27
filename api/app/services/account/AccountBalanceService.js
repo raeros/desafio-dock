@@ -1,12 +1,6 @@
 /* Constants */
 const { ACCOUNT_ERROR_HANDLING } = require("@constants/ErrorHandling");
 
-/* Models */
-const Account = require("@models/account/AccountModel");
-
-/* Account Types */
-const { ACCOUNT_TYPES } = require("@constants/App");
-
 /* Helpers */
 const ErrorHelper = require("@helpers/Error");
 
@@ -15,12 +9,12 @@ const AccountService = require("@services/account/AccountService");
 
 class AccountBalanceService {
     async getAccountBalanceById(id){
-        const { accountJSON } = await new AccountService().getAccountById(id);
+        const { accountFormatted } = await new AccountService().getAccountById(id);
 
-        if(!accountJSON || !accountJSON.idConta)
+        if(!accountFormatted || !accountFormatted.idConta)
             return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.ACCOUNT_NOT_FOUND);
 
-        return { saldo: accountJSON.saldo };
+        return { saldo: accountFormatted.saldo };
 
     }
 

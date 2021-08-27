@@ -13,14 +13,18 @@ const ErrorHelper = require("@helpers/Error");
 
 /* Importing Service */
 const AccountService = require("@services/account/AccountService");
+const TransactionService = require("@services/account/AccountTransactionService");
+
 
 class AccountDepositService {
     async create(id, deposit){
-        const { accountModel } = await this.accountCheckById(id);
 
-        accountModel.saldo += deposit.valor;
+        const account= await this.accountCheckById(id);
 
-        await accountModel.save();
+        const balance = parseFloat(account.saldo);
+        account.saldo = parseFloat(deposit.valor) + balance;
+
+        await account.save();
         await this.accountTransactionCreate(id, deposit.valor);
 
         return { message: "Deposit created sucefully!"};
@@ -28,11 +32,10 @@ class AccountDepositService {
     }
 
     async accountCheckById(id){
-        const { accountJSON, accountModel } = await new AccountService().getAccountById(id);
-        if(!accountJSON || !accountJSON.idConta)
-            return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.ACCOUNT_NOT_FOUND);
+        const accountService = new AccountService();
+        const { account } = await accountService.getAccountById(id);
 
-        return accountModel;
+        return account;
     }
 
     async accountTransactionCreate(id, valor){

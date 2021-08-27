@@ -43,7 +43,28 @@ class AccountService {
     }
 
     async getAccountById(id) {
-        return await Account.findByPk(id).then((data) => data ? { accountModel: data, accountJSON: data.toJSON } : {});
+        const account = await Account.findByPk(id);
+        const accountFormatted = account ? account.toJSON() : {};
+                
+        this.isAccountValid(accountFormatted);
+        this.isAccountBlocked(accountFormatted);
+
+        return {
+            account,
+            accountFormatted
+        }
+        
+    }
+
+    isAccountValid(account){
+        if(!account || !account.idConta)
+             return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.ACCOUNT_NOT_FOUND);
+        
+    }
+
+    isAccountBlocked(account){
+        if(!account.flagAtivo)
+            return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.ACCOUNT_BLOCKED);
     }
 
 }

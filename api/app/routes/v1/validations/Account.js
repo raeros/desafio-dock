@@ -1,7 +1,7 @@
 /* Importing Dependencies */
 const { Joi } = require("celebrate");
 
-const AccountCreateValidation = {
+const AccountValidation = {
     BODY: {
         body: Joi.object({
             idPessoa: Joi.number()
@@ -20,10 +20,8 @@ const AccountCreateValidation = {
                         .integer()
                         .required()
         })
-    }
-};
 
-const AccountGetValidation = {
+    },
     PARAMS: {
         params: Joi.object({
             id: Joi.number()
@@ -34,7 +32,7 @@ const AccountGetValidation = {
     }
 };
 
+
 module.exports = {
-    AccountCreateValidation,
-    AccountGetValidation
+    AccountValidation
 }
