@@ -57,13 +57,11 @@ class AccountWithdrawalService {
     }
     
     isAccountBalanceAvailableWithdrawal(account, withdrawalValue){
-        console.log(`\n\n\n saldo em conta.. ${account.saldo}, ${withdrawalValue}`);
         if(withdrawalValue > account.saldo)
             return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.ACCOUNT_BALANCE_NOT_SUFFICIENT);
     }
 
     isAccountBalanceLimitWithdrawal(account, withdrawalProjected){
-        console.log(`\n\n\n limite diario.. ${account.limiteSaqueDiario}, ${withdrawalProjected}`);
         if(withdrawalProjected > account.limiteSaqueDiario)
             return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.ACCOUNT_BALANCE_LIMIT_WITHDRAWAL);
     }

@@ -16,7 +16,7 @@ const PersonService = require("@services/person/PersonService");
 class AccountService {
     async create(account){
         await this.accountPersonValidation(account.idPessoa);
-        await this.accountTypeValidation(account.tipoConta);
+        await this.isAccountTypeValid(account.tipoConta);
 
         const accountCreated = await Account.create({
             ...account,
@@ -45,12 +45,7 @@ class AccountService {
         if(!person || !person.idPessoa)
              return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.PERSON_NOT_FOUND);
 
-    }
-
-    accountTypeValidation(tipoConta){
-        if(!Object.values(ACCOUNT_TYPES).includes(tipoConta))
-                return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.TYPE_NOT_SUPPORTED);
-    }
+    } 
 
     async getAccountById(id) {
         const account = await Account.findByPk(id);
@@ -64,6 +59,11 @@ class AccountService {
             accountFormatted
         }
         
+    }
+
+    isAccountTypeValid(tipoConta){
+        if(!Object.values(ACCOUNT_TYPES).includes(tipoConta))
+                return ErrorHelper.throw(ACCOUNT_ERROR_HANDLING.TYPE_NOT_SUPPORTED);
     }
 
     isAccountValid(account){
