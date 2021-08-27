@@ -1,5 +1,5 @@
 /* Importing Depedencies */
-const { Op, literal } = require('sequelize');
+const { Op } = require('sequelize');
 
 /* Constants */
 const { ACCOUNT_ERROR_HANDLING } = require("@constants/ErrorHandling");
@@ -25,9 +25,9 @@ class AccountTransactionService {
 
     }
 
-    async getWithdrawalTransactionByDay(idConta, date){
-        const todayStart = date.set({ hour: 0, minute: 0, seconds: 0});
-        const todayEnd = date.set({ hour: 23, minute: 59, seconds: 59});
+    async getTodayWithdrawalTransaction(idConta){
+        const todayStart = new Date().setHours(0, 0, 0, 0);
+        const todayEnd = new Date().setHours(23, 59, 59, 0);
         return await Transaction.findAll(
             {
                 where: {
@@ -49,7 +49,8 @@ class AccountTransactionService {
                         }
                     ]
                    
-                }
+                },
+                raw: true
             });
     }
 

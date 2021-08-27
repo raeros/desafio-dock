@@ -10,7 +10,7 @@ const AccountDepositValidation = {
     }),
     body: Joi.object({
         valor: Joi.number()
-                    //.min(1)
+                    .min(1)
                     .required()
     })
 };

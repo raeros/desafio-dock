@@ -8,7 +8,7 @@ const ErrorHelper = require("@helpers/Error");
 const AccountService = require("@services/account/AccountService");
 
 class AccountBalanceService {
-    async getAccountBalanceById(id){
+    async accountBalanceById(id){
         const { accountFormatted } = await new AccountService().getAccountById(id);
 
         if(!accountFormatted || !accountFormatted.idConta)

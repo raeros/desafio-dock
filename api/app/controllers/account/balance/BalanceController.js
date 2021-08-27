@@ -5,7 +5,7 @@ class AccountBalanceController {
     async getById(req, res, next) {
         try {
             
-            const balance = await new AccountBalanceService().getAccountBalanceById(req.params.id);
+            const balance = await new AccountBalanceService().accountBalanceById(req.params.id);
 
             return res.status(200)
                       .send(balance);
