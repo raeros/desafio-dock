@@ -9,7 +9,8 @@
     "install:only:dev": "npm install --only=dev",
     "tests:unit": "mocha '__tests__/business_logic/**spec.js'",
     "tests:api": "mocha '__tests__/api/**spec.js'",
-    "tests:benchmark": "node __benchmark__/benchmark.js"
+    "tests:benchmark": "node __benchmark__/benchmark.js",
+    "db:seed": "node_modules/.bin/sequelize db:seed:all --config config/database.js --seeders-path seeders/"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "dependencies": {
     "pg": "8.7.1",
     "sequelize": "6.6.5",
+    "sequelize-cli": "6.2.0",
     "express": "4.16.4",
     "celebrate": "10.0.0",
     "body-parser": "1.18.3",

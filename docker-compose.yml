@@ -20,7 +20,24 @@ services:
       POSTGRES_USER: dockuser
       POSTGRES_PASSWORD: passw0rd1234
       POSTGRES_DB: dock
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
     volumes:
       - db_data:/var/lib/postgresql/data
+  seed:
+    build: './api'
+    entrypoint: npm run db:seed
+    environment:
+      DB_HOST: db
+      DB_USER: dockuser
+      DB_DATABASE: dock
+      DB_PASSWORD: passw0rd1234
+    depends_on:
+      db:
+        condition: service_healthy
+
 volumes:
   db_data: {}
