@@ -53,7 +53,6 @@
   "_moduleAliases": {
     "@models": "./app/models",
     "@services": "./app/services",
-    "@builders": "./app/builders",
     "@constants": "./app/constants",
     "@controllers": "./app/controllers",
     "@validationsv1": "./app/routes/v1/validations",

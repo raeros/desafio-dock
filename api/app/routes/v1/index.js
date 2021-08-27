@@ -1,10 +1,7 @@
-/* Importing Dependencies */
+/* Import Dependencies */
 const router = require("express").Router();
 
-/* Account Route */
-router.use("/", require("./routes/account"));
-
-/* Person Route */
-router.use("/", require("./routes/person"));
+/* Payment Route */
+router.use("/", require("./routes/account/Account"));
 
 module.exports = router;

@@ -8,6 +8,9 @@ const AccountCreateValidation = {
                         .integer()
                         .min(1)
                         .required(),
+            saldo: Joi.number()
+                        .min(0)
+                        .required(),
             limiteSaqueDiario: Joi.number()
                         .min(0)
                         .required(),
@@ -24,7 +27,7 @@ const AccountGetValidation = {
     PARAMS: {
         params: Joi.object({
             id: Joi.number()
-                .integet()
+                .integer()
                 .min(1)
                 .required()
         })

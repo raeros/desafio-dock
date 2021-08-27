@@ -33,7 +33,7 @@ const sequelize = require("./database");
 require("./app/models");
 
 /* Routes configuration */
-//app.use(require("./app/routes"));
+app.use(require("./app/routes"));
 
 /* Register middleware for Joi validation */
 app.use(errors());
