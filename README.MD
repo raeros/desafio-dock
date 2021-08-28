@@ -23,16 +23,32 @@ cd desafio-dock
 docker-compose build --no-cache & docker-compose up --build --force-recreate
 ```
 
-O endpoint da aplicação ficará disponível em `htt://localhost:3000`.
+O endpoint da aplicação ficará disponível em `htt://localhost:3000`. 
 
+
+## Acesso ao banco de dados (Postgres)
+Caso queira visualizar o que está sendo gravado ou alterado dentro do container do banco de dados, o acesso é: 
+```shell
+Usuario: dockuser
+Senha: passw0rd1234
+Banco de dados: dock
+Porta: 5432
+Ip de acesso: 127.0.0.1 (após a execução dos comandos Docker compose)
+```
+
+# Diagrama banco de dados
+![Diagrama banco de dados](diagrama_dock_database.png "Diagrama banco de dados")
+
+
+# Arquitetura
+![Overview fluxo aplicação](dock_overview_fluxo.jpg "Overview fluxo aplicação")
 
 ## Casos de erro da API
 No desenvolvimento da API, considerei alguns cenários em que a aplicação deve gerar erros. Abaixo listo:
 - Em todas as requisições é verificado se a conta está com status de `blocked`. Caso esteja, não é permitido efetuar nenhum tipo de operação. Isso tanto vale para consultas ou criações.
-- Nas requisições em que se referem a saque, sempre verifico se o limite diario de saque de uma determinada conta foi atingigo. Caso tenha sido, retorno essa informação.
+- Nas requisições em que se referem a saque, sempre verifico se o limite diario de saque de uma determinada conta foi atingido. Caso tenha sido, retorno essa informação.
 - Sempre é verificado se o valor de saque solicitado condiz com o saldo da conta. Caso a conta não possua saldo para saque, retorno essa informação.
 - Na hora de criação de uma conta, verifico se o `idPessoa` informado existe dentro da tabela `Person`. Caso não possua, retorno essa informação.
-
 
 
 ## Criação de contas `[POST]` `htt://localhost:3000/api/v1/account`
