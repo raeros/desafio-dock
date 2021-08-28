@@ -2,17 +2,16 @@
 require("module-alias/register");
 
 /* Importing Dependencies */
-const { expect, assert } = require("chai");
-const sinon = require("sinon");
+const { expect } = require("chai");
 
 /* Importing Constants */
 const { ACCOUNT_ERROR_HANDLING } = require("@constants/ErrorHandling");
 
-/* */
+/* Importing Services */
 const AccountService = require("@services/account/AccountService");
-const PersonService = require("@services/person/PersonService")
 
 describe("Validação de regras de negócio do serviço AccountService", () => {
+  
     beforeEach(done => {
       this.account = {
         idPessoa: 1,
@@ -22,16 +21,6 @@ describe("Validação de regras de negócio do serviço AccountService", () => {
         tipoConta: 1
      };
       done();
-    });
-  
-
-    it('Retornar que o idPessoa não possui uma conta vinculada', done => {
-        expect(() => {
-            new AccountService().isAccountValid({});
-        }).to.throw(Error.message, ACCOUNT_ERROR_HANDLING.ACCOUNT_NOT_FOUND);
-
-        done();
-        
     });
 
     it('Retornar que a conta está com flag para bloqueio', done => {
@@ -51,29 +40,7 @@ describe("Validação de regras de negócio do serviço AccountService", () => {
         }).to.throw(Error.message, ACCOUNT_ERROR_HANDLING.TYPE_NOT_SUPPORTED);
 
         done();
-        
     });
-
-    it('Retornar erro na criação de conta. O idPessoa pessoa informado não existe.', done => {
-        expect( async () => {
-            // const personServiceMock = new PersonService();
-            // const personMock = sinon.spy(personServiceMock, "getById");
-
-            // const accountServiceMock = new AccountService();
-            // const accountPersonMock = sinon.spy(accountServiceMock, "accountPersonValidation");
-
-            // await personServiceMock.getById(1);
-            // await accountServiceMock.accountPersonValidation(1);
-
-            // assert(personMock.withArgs(1).calledOnce);
-            // assert(accountPersonMock.withArgs(1).calledOnce);
-
-        }).to.throw(Error.message, ACCOUNT_ERROR_HANDLING.TYPE_NOT_SUPPORTED)
-
-        done();
-        
-    });
-
   
   });
   
