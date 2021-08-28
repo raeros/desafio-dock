@@ -25,18 +25,8 @@ docker-compose build --no-cache & docker-compose up --build --force-recreate
 
 O endpoint da aplicação ficará disponível em `htt://localhost:3000`. 
 
-
-# Testes de api
-Após você ter rodado o comando executando o `Docker-compose`, agora vamos conseguir rodar nosso teste de Api:
-```shell
-cd desafio-dock/
-cd api/
-npm install
-npm run tests:api #testes de api
-```
-
 # Testes de negócio
-Após você ter rodado o comando executando o `Docker-compose`, agora vamos conseguir rodar nossos testes de negócio:
+Para rodar, basta executar:
 ```shell
 cd desafio-dock/
 cd api/
